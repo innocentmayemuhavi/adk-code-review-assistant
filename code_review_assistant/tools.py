@@ -49,7 +49,9 @@ async def analyze_code_structure(code: str, tool_context: ToolContext) -> Dict[s
             }
 
         # Store the original code in state for other agents
+               # Store code and analysis for other agents to access
         tool_context.state[StateKeys.CODE_TO_REVIEW] = code
+        tool_context.state[StateKeys.CODE_ANALYSIS] = analysis
         tool_context.state[StateKeys.CODE_LINE_COUNT] = len(code.splitlines())
 
         # Use thread pool for CPU-bound AST parsing
